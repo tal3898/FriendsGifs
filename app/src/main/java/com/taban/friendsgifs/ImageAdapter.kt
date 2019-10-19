@@ -25,7 +25,7 @@ class ImageAdapter(_context : Context, _gifsArray : List<SearchableGif>) : BaseA
         return imageView*/
 
         val view = allGifs.get(position).gifResourceId
-        view.layoutParams = ViewGroup.LayoutParams(450, 350)
+        view.layoutParams = ViewGroup.LayoutParams(480, 350)
         return view;
     }
 
