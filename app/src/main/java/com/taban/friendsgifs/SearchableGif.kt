@@ -13,8 +13,9 @@ class SearchableGif(_gifResourceId : Int, _searchKeywords : HashSet<String>) {
 
     }
 
-    fun addKeyword(s : String) {
+    fun addKeyword(s : String) : SearchableGif{
         searchKeywords.add(s)
+        return this
     }
 
     /**

@@ -7,9 +7,9 @@ import android.widget.BaseAdapter
 import android.widget.GridView
 import android.widget.ImageView
 
-class ImageAdapter(_context : Context, _gifsArray : List<Int>) : BaseAdapter() {
+class ImageAdapter(_context : Context, _gifsArray : List<SearchableGif>) : BaseAdapter() {
 
-    val allGifs: List<Int>
+    var allGifs: List<SearchableGif>
     val context : Context
 
     init {
@@ -19,7 +19,7 @@ class ImageAdapter(_context : Context, _gifsArray : List<Int>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var imageView = ImageView(context)
-        imageView.setImageResource(allGifs[position])
+        imageView.setImageResource(allGifs.get(position).gifResourceId)
         imageView.scaleType = ImageView.ScaleType.CENTER
         imageView.layoutParams = ViewGroup.LayoutParams(450, 350)
 
