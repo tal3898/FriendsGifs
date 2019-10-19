@@ -31,16 +31,16 @@ class MainActivity : AppCompatActivity() {
         searchingEditView = searching_edit_text
 
         allGifs.addAll(Arrays.asList(
-                SearchableGif(GifWebView(this, "file:///android_asset/g1.html")).addKeyword("1"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g2.html")).addKeyword("2"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g3.html")).addKeyword("3"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g4.html")).addKeyword("4"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g5.html")).addKeyword("5"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g6.html")).addKeyword("6"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g7.html")).addKeyword("7"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g8.html")).addKeyword("8"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g9.html")).addKeyword("9"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g10.html")).addKeyword("10")
+                SearchableGif(GifWebView(this, "file:///android_asset/g1.html")).addKeyword("joe").addKeyword("im sorry").addKeyword("i'm sorry"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g2.html")).addKeyword("joe").addKeyword("how you doin"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g3.html")).addKeyword("ross").addKeyword("well done").addKeyword("clapping"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g4.html")).addKeyword("rachel").addKeyword("phoebe").addKeyword("jumping").addKeyword("happy"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g5.html")).addKeyword("rachel").addKeyword("fuck you").addKeyword("curse"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g6.html")).addKeyword("rachel").addKeyword("ask me any thing"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g7.html")).addKeyword("rachel").addKeyword("hi").addKeyword("hey"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g8.html")).addKeyword("ross").addKeyword("unagi"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g9.html")).addKeyword("chandler").addKeyword("joe").addKeyword("thumb up").addKeyword("good for you").addKeyword("way to go"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g10.html")).addKeyword("phoebe").addKeyword("evil laugh")
                 ))
 
         imageAdapter = ImageAdapter(this, allGifs)
