@@ -15,8 +15,8 @@
         android:layout_marginRight="26dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:hint="search"
         android:inputType="textPersonName"
-        android:text="search"
         app:layout_constraintBottom_toTopOf="@+id/gifs_grid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
