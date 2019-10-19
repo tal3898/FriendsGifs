@@ -1,7 +1,7 @@
 package com.taban.friendsgifs
 
-class SearchableGif(_gifResourceId : Int, _searchKeywords : HashSet<String>) {
-    var gifResourceId : Int
+class SearchableGif(_gifResourceId : GifWebView, _searchKeywords : HashSet<String>) {
+    var gifResourceId : GifWebView
     var searchKeywords : HashSet<String>
 
     init {
@@ -9,7 +9,7 @@ class SearchableGif(_gifResourceId : Int, _searchKeywords : HashSet<String>) {
         searchKeywords = _searchKeywords
     }
 
-    constructor(_gifResourceId: Int) : this(_gifResourceId, HashSet<String>()){
+    constructor(_gifResourceId: GifWebView) : this(_gifResourceId, HashSet<String>()){
 
     }
 

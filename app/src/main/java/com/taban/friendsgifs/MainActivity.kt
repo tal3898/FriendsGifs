@@ -31,24 +31,16 @@ class MainActivity : AppCompatActivity() {
         searchingEditView = searching_edit_text
 
         allGifs.addAll(Arrays.asList(
-                SearchableGif(R.drawable.a1).addKeyword("1"),
-                SearchableGif(R.drawable.a2).addKeyword("2"),
-                SearchableGif(R.drawable.a3).addKeyword("3"),
-                SearchableGif(R.drawable.a4).addKeyword("4"),
-                SearchableGif(R.drawable.a5).addKeyword("5"),
-                SearchableGif(R.drawable.a6).addKeyword("6"),
-                SearchableGif(R.drawable.a7).addKeyword("7"),
-                SearchableGif(R.drawable.a8).addKeyword("8"),
-                SearchableGif(R.drawable.a9).addKeyword("9"),
-                SearchableGif(R.drawable.a10).addKeyword("10").addKeyword("0"),
-                SearchableGif(R.drawable.a11).addKeyword("11").addKeyword("1"),
-                SearchableGif(R.drawable.a12).addKeyword("12").addKeyword("2"),
-                SearchableGif(R.drawable.a13).addKeyword("13").addKeyword("3"),
-                SearchableGif(R.drawable.a14).addKeyword("14").addKeyword("4"),
-                SearchableGif(R.drawable.a15).addKeyword("15").addKeyword("5"),
-                SearchableGif(R.drawable.a16).addKeyword("16").addKeyword("6"),
-                SearchableGif(R.drawable.a17).addKeyword("17").addKeyword("7"),
-                SearchableGif(R.drawable.a18).addKeyword("18").addKeyword("8")
+                SearchableGif(GifWebView(this, "file:///android_asset/g1.html")).addKeyword("1"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g2.html")).addKeyword("2"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g3.html")).addKeyword("3"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g4.html")).addKeyword("4"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g5.html")).addKeyword("5"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g6.html")).addKeyword("6"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g7.html")).addKeyword("7"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g8.html")).addKeyword("8"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g9.html")).addKeyword("9"),
+                SearchableGif(GifWebView(this, "file:///android_asset/g10.html")).addKeyword("10")
                 ))
 
         imageAdapter = ImageAdapter(this, allGifs)

@@ -24,7 +24,7 @@ class ImageAdapter(_context : Context, _gifsArray : List<SearchableGif>) : BaseA
         imageView.layoutParams = ViewGroup.LayoutParams(450, 350)
         return imageView*/
 
-        val view = GifWebView(context, "file:///android_asset/g5.html")
+        val view = allGifs.get(position).gifResourceId
         view.layoutParams = ViewGroup.LayoutParams(450, 350)
         return view;
     }
