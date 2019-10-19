@@ -18,12 +18,15 @@ class ImageAdapter(_context : Context, _gifsArray : List<SearchableGif>) : BaseA
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var imageView = ImageView(context)
+        /*var imageView = ImageView(context)
         imageView.setImageResource(allGifs.get(position).gifResourceId)
         imageView.scaleType = ImageView.ScaleType.CENTER
         imageView.layoutParams = ViewGroup.LayoutParams(450, 350)
+        return imageView*/
 
-        return imageView
+        val view = GifWebView(context, "file:///android_asset/gif1.gif")
+        view.layoutParams = ViewGroup.LayoutParams(450, 350)
+        return view;
     }
 
     override fun getItem(position: Int): Any {
