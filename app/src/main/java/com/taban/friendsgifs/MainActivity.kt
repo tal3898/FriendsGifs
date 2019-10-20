@@ -33,18 +33,7 @@ class MainActivity : AppCompatActivity() {
         gifGridView = gifs_grid
         searchingEditView = searching_edit_text
 
-        allGifs.addAll(Arrays.asList(
-                createSearchableGif("g1")!!,
-                createSearchableGif("g2")!!,
-                createSearchableGif("g3")!!,
-                createSearchableGif("g4")!!,
-                createSearchableGif("g5")!!,
-                createSearchableGif("g6")!!,
-                createSearchableGif("g7")!!,
-                createSearchableGif("g8")!!,
-                createSearchableGif("g9")!!,
-                createSearchableGif("g10")!!
-        ))
+        loadAllGifs()
 
 
         imageAdapter = ImageAdapter(this, allGifs)
@@ -73,6 +62,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    fun loadAllGifs() {
+        for (x in 1..13) {
+            var gif = createSearchableGif("g" + x)
+            if (gif != null) {
+                allGifs.add(gif)
+            } else {
+                Log.e(LOG_TAG, "could not load the gif g" + x)
+            }
+        }
+    }
 
     fun createSearchableGif(gifName: String): SearchableGif? {
         var searchKeyWords = getSearchKeywords(gifName + ".txt")
