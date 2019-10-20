@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val LOG_TAG = "friends_gifs"
+        val GIFS_COUNT = 21
     }
 
     lateinit var gifGridView: GridView
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadAllGifs() {
-        for (x in 1..13) {
+        for (x in 1..GIFS_COUNT) {
             var gif = createSearchableGif("g" + x)
             if (gif != null) {
                 allGifs.add(gif)
