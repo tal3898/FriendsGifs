@@ -8,6 +8,9 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.GridView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -17,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         val LOG_TAG = "friends_gifs"
     }
 
-    lateinit var gifGridView : GridView
-    lateinit var searchingEditView : EditText
+    lateinit var gifGridView: GridView
+    lateinit var searchingEditView: EditText
 
     lateinit var imageAdapter: ImageAdapter
     val allGifs: ArrayList<SearchableGif> = ArrayList()
@@ -31,31 +34,32 @@ class MainActivity : AppCompatActivity() {
         searchingEditView = searching_edit_text
 
         allGifs.addAll(Arrays.asList(
-                SearchableGif(GifWebView(this, "file:///android_asset/g1.html"), "joe im sorry i'm sorry"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g2.html"), "joe how you doin"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g3.html"), "ross well done clapping"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g4.html"), "rachel phoebe jumping happy"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g5.html"), "rachel fuck you curse"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g6.html"), "rachel ask me any thing"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g7.html"), "rachel hi hey"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g8.html"), "ross unagi"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g9.html"), "chandler joe thumbs up good for you way to go"),
-                SearchableGif(GifWebView(this, "file:///android_asset/g10.html"),"phoebe evil laugh")
-                ))
+                createSearchableGif("g1")!!,
+                createSearchableGif("g2")!!,
+                createSearchableGif("g3")!!,
+                createSearchableGif("g4")!!,
+                createSearchableGif("g5")!!,
+                createSearchableGif("g6")!!,
+                createSearchableGif("g7")!!,
+                createSearchableGif("g8")!!,
+                createSearchableGif("g9")!!,
+                createSearchableGif("g10")!!
+        ))
+
 
         imageAdapter = ImageAdapter(this, allGifs)
         gifGridView.adapter = imageAdapter
 
-        searchingEditView.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s : Editable) {
+        searchingEditView.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
 
             }
 
-            override fun beforeTextChanged(s : CharSequence , start : Int, count : Int, after : Int) {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
 
-            override fun onTextChanged(s : CharSequence , start : Int, count : Int, after : Int) {
+            override fun onTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 if (s.length == 0) {
                     Log.i(LOG_TAG, "The searching is empty, show all")
                     imageAdapter.allGifs = allGifs
@@ -67,5 +71,37 @@ class MainActivity : AppCompatActivity() {
                 imageAdapter.notifyDataSetChanged()
             }
         })
+    }
+
+
+    fun createSearchableGif(gifName: String): SearchableGif? {
+        var searchKeyWords = getSearchKeywords(gifName + ".txt")
+        if (searchKeyWords != null) {
+            return SearchableGif(GifWebView(this, "file:///android_asset/" + gifName + ".html"),
+                    searchKeyWords.split(","))
+        } else {
+            return null
+        }
+    }
+
+    fun getSearchKeywords(gifFileName: String): String? {
+        var reader: BufferedReader? = null
+
+        try {
+            reader = BufferedReader(InputStreamReader(getAssets().open(gifFileName), "UTF-8"))
+            var mLine = reader.readLine()
+            return mLine
+        } catch (e: Exception) {
+            Log.e(LOG_TAG, "could not read the file", e)
+            return null
+        } finally {
+            if (reader != null) {
+                try {
+                    reader?.close()
+                } catch (e: IOException) {
+                    Log.e(LOG_TAG, "could not close file")
+                }
+            }
+        }
     }
 }
