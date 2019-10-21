@@ -1,10 +1,13 @@
 package com.taban.friendsgifs
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.GridView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -39,6 +42,13 @@ class MainActivity : AppCompatActivity() {
 
         imageAdapter = ImageAdapter(this, allGifs)
         gifGridView.adapter = imageAdapter
+        gifGridView.onItemClickListener = object : AdapterView.OnItemClickListener {
+            override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                // Get the GridView selected/clicked item text
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Log.i(LOG_TAG, "clicked " + position)
+            }
+        }
 
         searchingEditView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
@@ -77,7 +87,8 @@ class MainActivity : AppCompatActivity() {
     fun createSearchableGif(gifName: String): SearchableGif? {
         var searchKeyWords = getSearchKeywords(gifName + ".txt")
         if (searchKeyWords != null) {
-            return SearchableGif(GifWebView(this, "file:///android_asset/" + gifName + ".html"),
+            var gifWebView = GifWebView(this, "file:///android_asset/" + gifName + ".html")
+            return SearchableGif(gifWebView,
                     searchKeyWords.split(","))
         } else {
             return null
