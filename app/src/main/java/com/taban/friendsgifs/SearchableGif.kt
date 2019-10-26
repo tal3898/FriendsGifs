@@ -1,18 +1,17 @@
 package com.taban.friendsgifs
 
-class SearchableGif(_gifResourceId : GifWebView, _searchKeywords : List<String>) {
+class SearchableGif(_id : Int, _gifResourceId : GifWebView, _searchKeywords : List<String>) {
+    var id : Int
     var gifResourceId : GifWebView
     var searchKeywords : List<String>
 
 
     init {
+        id = _id
         gifResourceId = _gifResourceId
         searchKeywords = _searchKeywords
     }
 
-    constructor(_gifResourceId: GifWebView) : this(_gifResourceId, "".split(",")){
-
-    }
 
     /**
      * The method gets a search key words, and returns true if the current

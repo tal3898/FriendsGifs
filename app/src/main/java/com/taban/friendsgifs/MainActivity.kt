@@ -10,19 +10,16 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.GridView
+import com.taban.friendsgifs.Globals.Companion.GIFS_COUNT
+import com.taban.friendsgifs.Globals.Companion.GIF_ID_INTENT_PARAMETER
+import com.taban.friendsgifs.Globals.Companion.LOG_TAG
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        val LOG_TAG = "friends_gifs"
-        val GIFS_COUNT = 21
-    }
 
     lateinit var gifGridView: GridView
     lateinit var searchingEditView: EditText
@@ -39,14 +36,19 @@ class MainActivity : AppCompatActivity() {
 
         loadAllGifs()
 
-
         imageAdapter = ImageAdapter(this, allGifs)
         gifGridView.adapter = imageAdapter
         gifGridView.onItemClickListener = object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+
                 // Get the GridView selected/clicked item text
-                val selectedItem = parent.getItemAtPosition(position).toString()
+                val selectedGif = parent.getItemAtPosition(position) as SearchableGif
                 Log.i(LOG_TAG, "clicked " + position)
+
+                var intent = Intent(this@MainActivity, SpecificGifActivity::class.java)
+                Log.i(LOG_TAG, "puting extra with gif id " + selectedGif.id)
+                intent.putExtra(GIF_ID_INTENT_PARAMETER, selectedGif.id)
+                startActivity(intent)
             }
         }
 
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     fun loadAllGifs() {
         for (x in 1..GIFS_COUNT) {
-            var gif = createSearchableGif("g" + x)
+            var gif = createSearchableGif(x, "g" + x)
             if (gif != null) {
                 allGifs.add(gif)
             } else {
@@ -84,11 +86,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun createSearchableGif(gifName: String): SearchableGif? {
+    fun createSearchableGif(id : Int, gifName: String): SearchableGif? {
         var searchKeyWords = getSearchKeywords(gifName + ".txt")
         if (searchKeyWords != null) {
             var gifWebView = GifWebView(this, "file:///android_asset/" + gifName + ".html")
-            return SearchableGif(gifWebView,
+            return SearchableGif(id,
+                    gifWebView,
                     searchKeyWords.split(","))
         } else {
             return null
