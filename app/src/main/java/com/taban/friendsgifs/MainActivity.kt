@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     fun loadAllGifs() {
         for (x in 1..GIFS_COUNT) {
-            var gif = createSearchableGif(x, "g" + x)
+            var gif = Globals.createSearchableGif(this, x, "g" + x)
             if (gif != null) {
                 allGifs.add(gif)
             } else {
@@ -86,36 +86,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun createSearchableGif(id : Int, gifName: String): SearchableGif? {
-        var searchKeyWords = getSearchKeywords(gifName + ".txt")
-        if (searchKeyWords != null) {
-            var gifWebView = GifWebView(this, "file:///android_asset/" + gifName + ".html")
-            return SearchableGif(id,
-                    gifWebView,
-                    searchKeyWords.split(","))
-        } else {
-            return null
-        }
-    }
 
-    fun getSearchKeywords(gifFileName: String): String? {
-        var reader: BufferedReader? = null
-
-        try {
-            reader = BufferedReader(InputStreamReader(getAssets().open(gifFileName), "UTF-8"))
-            var mLine = reader.readLine()
-            return mLine
-        } catch (e: Exception) {
-            Log.e(LOG_TAG, "could not read the file", e)
-            return null
-        } finally {
-            if (reader != null) {
-                try {
-                    reader?.close()
-                } catch (e: IOException) {
-                    Log.e(LOG_TAG, "could not close file")
-                }
-            }
-        }
-    }
 }
