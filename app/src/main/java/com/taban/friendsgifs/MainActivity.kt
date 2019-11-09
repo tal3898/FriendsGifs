@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         var searchKeyWords = Globals.getSearchKeywords(context, gifName + ".txt")
         if (searchKeyWords != null) {
             val resID = resources.getIdentifier(gifName,
-                    "drawable", packageName)
+                    "raw", packageName)
             return SearchableGif(resID,
                     searchKeyWords.split(","))
         } else {
