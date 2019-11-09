@@ -1,14 +1,12 @@
 package com.taban.friendsgifs
 
-class SearchableGif(_id : Int, _gifResourceId : GifWebView, _searchKeywords : List<String>) {
-    var id : Int
-    var gifResourceId : GifWebView
+class SearchableGif(_resourceId : Int, _searchKeywords : List<String>) {
+    var resourcId : Int
     var searchKeywords : List<String>
 
 
     init {
-        id = _id
-        gifResourceId = _gifResourceId
+        resourcId = _resourceId
         searchKeywords = _searchKeywords
     }
 

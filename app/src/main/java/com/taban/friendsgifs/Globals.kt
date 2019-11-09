@@ -1,6 +1,7 @@
 package com.taban.friendsgifs
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.Log
 import java.io.BufferedReader
 import java.io.IOException
@@ -10,21 +11,8 @@ class Globals {
 
     companion object {
         val LOG_TAG = "friends_gifs"
-        val GIFS_COUNT = 21
+        val GIFS_COUNT = 3
         val GIF_ID_INTENT_PARAMETER = "GIF_ID"
-
-
-        fun createSearchableGif(context : Context, id : Int, gifName: String): SearchableGif? {
-            var searchKeyWords = getSearchKeywords(context, gifName + ".txt")
-            if (searchKeyWords != null) {
-                var gifWebView = GifWebView(context, "file:///android_asset/" + gifName + ".html")
-                return SearchableGif(id,
-                        gifWebView,
-                        searchKeyWords.split(","))
-            } else {
-                return null
-            }
-        }
 
         fun getSearchKeywords(context : Context, gifFileName: String): String? {
             var reader: BufferedReader? = null

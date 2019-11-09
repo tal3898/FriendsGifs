@@ -12,9 +12,9 @@ class SpecificGifActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specific_gif)
 
-        val gifId = intent.getIntExtra(GIF_ID_INTENT_PARAMETER,-1)
-        Log.i(LOG_TAG, "created with gif id " + gifId)
+        val gifResourceId = intent.getIntExtra(GIF_ID_INTENT_PARAMETER,-1)
+        Log.i(LOG_TAG, "created with gif id " + gifResourceId)
         var gifImageView = findViewById(R.id.gif) as GifImageView
-        gifImageView.setGifResource(R.drawable.gif2)
+        gifImageView.setGifResource(gifResourceId)
     }
 }

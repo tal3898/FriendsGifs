@@ -1,5 +1,6 @@
 package com.taban.friendsgifs
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,12 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 import kotlin.collections.ArrayList
+import android.support.v4.app.SupportActivity
+import android.support.v4.app.SupportActivity.ExtraData
+import android.support.v4.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,8 +53,8 @@ class MainActivity : AppCompatActivity() {
                 Log.i(LOG_TAG, "clicked " + position)
 
                 var intent = Intent(this@MainActivity, SpecificGifActivity::class.java)
-                Log.i(LOG_TAG, "puting extra with gif id " + selectedGif.id)
-                intent.putExtra(GIF_ID_INTENT_PARAMETER, selectedGif.id)
+                Log.i(LOG_TAG, "puting extra with gif id " + selectedGif.resourcId)
+                intent.putExtra(GIF_ID_INTENT_PARAMETER, selectedGif.resourcId)
                 startActivity(intent)
             }
         }
@@ -77,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     fun loadAllGifs() {
         for (x in 1..GIFS_COUNT) {
-            var gif = Globals.createSearchableGif(this, x, "g" + x)
+            var gif = createSearchableGif(this, x, "g" + x)
             if (gif != null) {
                 allGifs.add(gif)
             } else {
@@ -86,5 +93,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun createSearchableGif(context : Context, id : Int, gifName: String): SearchableGif? {
+        var searchKeyWords = Globals.getSearchKeywords(context, gifName + ".txt")
+        if (searchKeyWords != null) {
+            val resID = resources.getIdentifier(gifName,
+                    "drawable", packageName)
+            return SearchableGif(resID,
+                    searchKeyWords.split(","))
+        } else {
+            return null
+        }
+    }
 
 }

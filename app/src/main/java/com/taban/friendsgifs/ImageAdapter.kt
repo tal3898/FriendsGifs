@@ -19,7 +19,7 @@ class ImageAdapter(_context : Context, _gifsArray : List<SearchableGif>) : BaseA
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var gifImageView = GifImageView(context)
-        gifImageView.setGifResource(R.drawable.gif1)
+        gifImageView.setGifResource(allGifs.get(position).resourcId)
         return gifImageView
 
         /*var imageView = ImageView(context)
