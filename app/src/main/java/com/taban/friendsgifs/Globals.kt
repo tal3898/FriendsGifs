@@ -11,7 +11,7 @@ class Globals {
 
     companion object {
         val LOG_TAG = "friends_gifs"
-        val GIFS_COUNT = 30
+        val GIFS_COUNT = 40
         val GIF_ID_INTENT_PARAMETER = "GIF_ID"
 
         fun getSearchKeywords(context : Context, gifFileName: String): String? {
