@@ -1,4 +1,4 @@
-package com.taban.friendsgifs
+package com.taban.friendsgifs.activities
 
 import android.content.Context
 import android.content.Intent
@@ -11,19 +11,15 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.GridView
-import com.taban.friendsgifs.Globals.Companion.GIFS_COUNT
-import com.taban.friendsgifs.Globals.Companion.GIF_ID_INTENT_PARAMETER
-import com.taban.friendsgifs.Globals.Companion.LOG_TAG
+import com.taban.friendsgifs.utility.Globals.Companion.GIFS_COUNT
+import com.taban.friendsgifs.utility.Globals.Companion.GIF_ID_INTENT_PARAMETER
+import com.taban.friendsgifs.utility.Globals.Companion.LOG_TAG
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
 import kotlin.collections.ArrayList
-import android.support.v4.app.SupportActivity
-import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.taban.friendsgifs.*
+import com.taban.friendsgifs.models.ImageAdapter
+import com.taban.friendsgifs.models.SearchableGif
+import com.taban.friendsgifs.utility.Globals
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.taban.friendsgifs;
+package com.taban.friendsgifs.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +13,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.taban.friendsgifs.R;
 
 import java.math.BigDecimal;
 

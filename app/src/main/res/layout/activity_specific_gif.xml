@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".SpecificGifActivity">
+    tools:context=".activities.SpecificGifActivity">
 
     <Button
         android:id="@+id/share_btn"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.taban.friendsgifs.GifImageView
+    <com.taban.friendsgifs.views.GifImageView
         android:id="@+id/gif"
         android:layout_width="400dp"
         android:layout_height="400dp"

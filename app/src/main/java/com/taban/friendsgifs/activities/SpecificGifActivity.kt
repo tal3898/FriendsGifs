@@ -1,10 +1,12 @@
-package com.taban.friendsgifs
+package com.taban.friendsgifs.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.taban.friendsgifs.Globals.Companion.GIF_ID_INTENT_PARAMETER
-import com.taban.friendsgifs.Globals.Companion.LOG_TAG
+import com.taban.friendsgifs.views.GifImageView
+import com.taban.friendsgifs.utility.Globals.Companion.GIF_ID_INTENT_PARAMETER
+import com.taban.friendsgifs.utility.Globals.Companion.LOG_TAG
+import com.taban.friendsgifs.R
 
 class SpecificGifActivity : AppCompatActivity() {
 

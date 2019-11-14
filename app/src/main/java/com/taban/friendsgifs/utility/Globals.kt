@@ -1,7 +1,6 @@
-package com.taban.friendsgifs
+package com.taban.friendsgifs.utility
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
 import java.io.BufferedReader
 import java.io.IOException

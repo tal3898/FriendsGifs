@@ -1,4 +1,4 @@
-package com.taban.friendsgifs;
+package com.taban.friendsgifs.views;
 
 import android.content.Context;
 import android.webkit.WebView;

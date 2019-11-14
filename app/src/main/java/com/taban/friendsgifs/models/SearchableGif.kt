@@ -1,4 +1,4 @@
-package com.taban.friendsgifs
+package com.taban.friendsgifs.models
 
 class SearchableGif(_resourceId : Int, _searchKeywords : List<String>) {
     var resourcId : Int
