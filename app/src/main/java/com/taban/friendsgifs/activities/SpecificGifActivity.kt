@@ -23,11 +23,10 @@ class SpecificGifActivity : AppCompatActivity() {
     }
 
     fun onShareButtonClick(view : View) {
-        val sharingIntent = Intent(Intent.ACTION_SEND)
-        sharingIntent.type = "text/plain"
-        val shareBody = "Here is the share content body"
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here")
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
+        val sharingIntent = Intent(Intent.ACTION_SEND).apply {
+            type="text/plain"
+            putExtra(android.content.Intent.EXTRA_TEXT, "Here is the share content body")
+        }
         startActivity(Intent.createChooser(sharingIntent, "Share via"))
     }
 }
