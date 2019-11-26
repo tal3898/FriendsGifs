@@ -1,6 +1,7 @@
 package com.taban.friendsgifs.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,21 +13,29 @@ import com.taban.friendsgifs.R
 
 class SpecificGifActivity : AppCompatActivity() {
 
+    var selectedGifResourceId : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specific_gif)
 
-        val gifResourceId = intent.getIntExtra(GIF_ID_INTENT_PARAMETER,-1)
-        Log.i(LOG_TAG, "created with gif id " + gifResourceId)
+        selectedGifResourceId = intent.getIntExtra(GIF_ID_INTENT_PARAMETER,-1)
+        Log.i(LOG_TAG, "created with gif id " + selectedGifResourceId)
+
+        // Display the selected gif
         var gifImageView = findViewById(R.id.gif) as GifImageView
-        gifImageView.setGifResource(gifResourceId)
+        gifImageView.setGifResource(selectedGifResourceId)
     }
 
     fun onShareButtonClick(view : View) {
         val sharingIntent = Intent(Intent.ACTION_SEND).apply {
-            type="text/plain"
-            putExtra(android.content.Intent.EXTRA_TEXT, "Here is the share content body")
+            setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://" + packageName + "/" + R.raw.mini))
+            type="image/jpg"
         }
         startActivity(Intent.createChooser(sharingIntent, "Share via"))
     }
+
+
 }
